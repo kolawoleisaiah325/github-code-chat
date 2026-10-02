@@ -1,0 +1,208 @@
+{
+  "evaluated_at": "2026-10-02T00:08:02.293742+00:00",
+  "corpus": "Bundled fictional shop: five small Python files",
+  "source_fingerprint": "2d29b28b570bd47a93410a3e3915d790513526e4cbb59b9e4cd9b9ff0cbd4101",
+  "embedding_model": null,
+  "limitations": "Twenty authored questions on five authored files. Relevance is evaluated at file level, not passage or answer correctness. This is a sanity check, not independent evidence of performance on real repositories. Latency depends on hardware and model warm-up. Dense search always returns nearest neighbors, including for out-of-scope questions.",
+  "results": {
+    "lexical": {
+      "answerable_questions": 16,
+      "out_of_scope_questions": 4,
+      "file_hit_at_1": 0.9375,
+      "file_hit_at_3": 1.0,
+      "mrr_at_3": 0.9688,
+      "out_of_scope_no_result": 4,
+      "median_retrieval_ms": 0.415,
+      "cases": [
+        {
+          "question": "How are repeated additions of the same product handled?",
+          "file": "cart.py",
+          "retrieved_files": [
+            "cart.py",
+            "inventory.py",
+            "pricing.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 0.978
+        },
+        {
+          "question": "What happens when a negative quantity is added?",
+          "file": "cart.py",
+          "retrieved_files": [
+            "inventory.py",
+            "cart.py",
+            "pricing.py"
+          ],
+          "rank": 2,
+          "retrieval_ms": 0.551
+        },
+        {
+          "question": "Does removing an absent product fail?",
+          "file": "cart.py",
+          "retrieved_files": [
+            "cart.py",
+            "inventory.py",
+            "pricing.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 0.516
+        },
+        {
+          "question": "How are total units counted rather than distinct products?",
+          "file": "cart.py",
+          "retrieved_files": [
+            "cart.py",
+            "orders.py",
+            "pricing.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 0.512
+        },
+        {
+          "question": "How do reservations affect available stock?",
+          "file": "inventory.py",
+          "retrieved_files": [
+            "inventory.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 0.41
+        },
+        {
+          "question": "How are product identifiers with insufficient stock found?",
+          "file": "inventory.py",
+          "retrieved_files": [
+            "inventory.py",
+            "cart.py",
+            "pricing.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 0.391
+        },
+        {
+          "question": "Can inventory reservations be partially applied when one product is out of stock?",
+          "file": "inventory.py",
+          "retrieved_files": [
+            "inventory.py",
+            "cart.py",
+            "pricing.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 0.404
+        },
+        {
+          "question": "How is the price multiplied by each quantity?",
+          "file": "pricing.py",
+          "retrieved_files": [
+            "pricing.py",
+            "cart.py",
+            "inventory.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 0.389
+        },
+        {
+          "question": "How much discount does WELCOME10 give?",
+          "file": "pricing.py",
+          "retrieved_files": [
+            "pricing.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 0.395
+        },
+        {
+          "question": "What happens with an unknown coupon?",
+          "file": "pricing.py",
+          "retrieved_files": [
+            "pricing.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 0.436
+        },
+        {
+          "question": "Is shipping discounted by the coupon?",
+          "file": "pricing.py",
+          "retrieved_files": [
+            "pricing.py",
+            "shipping.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 0.384
+        },
+        {
+          "question": "When is domestic shipping free?",
+          "file": "shipping.py",
+          "retrieved_files": [
+            "shipping.py",
+            "pricing.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 0.54
+        },
+        {
+          "question": "What is the international delivery estimate?",
+          "file": "shipping.py",
+          "retrieved_files": [
+            "shipping.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 0.541
+        },
+        {
+          "question": "What is the initial status of a newly created order?",
+          "file": "orders.py",
+          "retrieved_files": [
+            "orders.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 0.541
+        },
+        {
+          "question": "Can an already paid order be marked paid again?",
+          "file": "orders.py",
+          "retrieved_files": [
+            "orders.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 0.398
+        },
+        {
+          "question": "Can an order be cancelled after payment?",
+          "file": "orders.py",
+          "retrieved_files": [
+            "orders.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 0.402
+        },
+        {
+          "question": "Kubernetes replica autoscaling policy?",
+          "file": null,
+          "retrieved_files": [],
+          "rank": null,
+          "retrieval_ms": 0.374
+        },
+        {
+          "question": "Redis eviction TTL configuration?",
+          "file": null,
+          "retrieved_files": [],
+          "rank": null,
+          "retrieval_ms": 0.382
+        },
+        {
+          "question": "Stripe webhook signature secret?",
+          "file": null,
+          "retrieved_files": [],
+          "rank": null,
+          "retrieval_ms": 0.425
+        },
+        {
+          "question": "Elasticsearch cluster shards?",
+          "file": null,
+          "retrieved_files": [],
+          "rank": null,
+          "retrieval_ms": 0.421
+        }
+      ]
+    }
+  }
+}

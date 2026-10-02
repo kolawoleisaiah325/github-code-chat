@@ -1,0 +1,22 @@
+[
+  {"question":"How are repeated additions of the same product handled?", "file":"cart.py"},
+  {"question":"What happens when a negative quantity is added?", "file":"cart.py"},
+  {"question":"Does removing an absent product fail?", "file":"cart.py"},
+  {"question":"How are total units counted rather than distinct products?", "file":"cart.py"},
+  {"question":"How do reservations affect available stock?", "file":"inventory.py"},
+  {"question":"How are product identifiers with insufficient stock found?", "file":"inventory.py"},
+  {"question":"Can inventory reservations be partially applied when one product is out of stock?", "file":"inventory.py"},
+  {"question":"How is the price multiplied by each quantity?", "file":"pricing.py"},
+  {"question":"How much discount does WELCOME10 give?", "file":"pricing.py"},
+  {"question":"What happens with an unknown coupon?", "file":"pricing.py"},
+  {"question":"Is shipping discounted by the coupon?", "file":"pricing.py"},
+  {"question":"When is domestic shipping free?", "file":"shipping.py"},
+  {"question":"What is the international delivery estimate?", "file":"shipping.py"},
+  {"question":"What is the initial status of a newly created order?", "file":"orders.py"},
+  {"question":"Can an already paid order be marked paid again?", "file":"orders.py"},
+  {"question":"Can an order be cancelled after payment?", "file":"orders.py"},
+  {"question":"Kubernetes replica autoscaling policy?", "file":null},
+  {"question":"Redis eviction TTL configuration?", "file":null},
+  {"question":"Stripe webhook signature secret?", "file":null},
+  {"question":"Elasticsearch cluster shards?", "file":null}
+]

@@ -1,0 +1,902 @@
+{
+  "evaluated_at": "2026-10-02T00:08:02.812272+00:00",
+  "corpus": "Bundled fictional shop: five small Python files",
+  "source_fingerprint": "2d29b28b570bd47a93410a3e3915d790513526e4cbb59b9e4cd9b9ff0cbd4101",
+  "embedding_model": "nomic-embed-text",
+  "limitations": "Twenty authored questions on five authored files. Relevance is evaluated at file level, not passage or answer correctness. This is a sanity check, not independent evidence of performance on real repositories. Latency depends on hardware and model warm-up. Dense search always returns nearest neighbors, including for out-of-scope questions.",
+  "results": {
+    "lexical": {
+      "answerable_questions": 16,
+      "out_of_scope_questions": 4,
+      "file_hit_at_1": 0.9375,
+      "file_hit_at_3": 1.0,
+      "mrr_at_3": 0.9688,
+      "out_of_scope_no_result": 4,
+      "median_retrieval_ms": 0.344,
+      "cases": [
+        {
+          "question": "How are repeated additions of the same product handled?",
+          "file": "cart.py",
+          "retrieved_files": [
+            "cart.py",
+            "inventory.py",
+            "pricing.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 0.655
+        },
+        {
+          "question": "What happens when a negative quantity is added?",
+          "file": "cart.py",
+          "retrieved_files": [
+            "inventory.py",
+            "cart.py",
+            "pricing.py"
+          ],
+          "rank": 2,
+          "retrieval_ms": 0.376
+        },
+        {
+          "question": "Does removing an absent product fail?",
+          "file": "cart.py",
+          "retrieved_files": [
+            "cart.py",
+            "inventory.py",
+            "pricing.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 0.344
+        },
+        {
+          "question": "How are total units counted rather than distinct products?",
+          "file": "cart.py",
+          "retrieved_files": [
+            "cart.py",
+            "orders.py",
+            "pricing.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 0.365
+        },
+        {
+          "question": "How do reservations affect available stock?",
+          "file": "inventory.py",
+          "retrieved_files": [
+            "inventory.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 0.353
+        },
+        {
+          "question": "How are product identifiers with insufficient stock found?",
+          "file": "inventory.py",
+          "retrieved_files": [
+            "inventory.py",
+            "cart.py",
+            "pricing.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 0.349
+        },
+        {
+          "question": "Can inventory reservations be partially applied when one product is out of stock?",
+          "file": "inventory.py",
+          "retrieved_files": [
+            "inventory.py",
+            "cart.py",
+            "pricing.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 0.354
+        },
+        {
+          "question": "How is the price multiplied by each quantity?",
+          "file": "pricing.py",
+          "retrieved_files": [
+            "pricing.py",
+            "cart.py",
+            "inventory.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 0.345
+        },
+        {
+          "question": "How much discount does WELCOME10 give?",
+          "file": "pricing.py",
+          "retrieved_files": [
+            "pricing.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 0.504
+        },
+        {
+          "question": "What happens with an unknown coupon?",
+          "file": "pricing.py",
+          "retrieved_files": [
+            "pricing.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 0.331
+        },
+        {
+          "question": "Is shipping discounted by the coupon?",
+          "file": "pricing.py",
+          "retrieved_files": [
+            "pricing.py",
+            "shipping.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 0.314
+        },
+        {
+          "question": "When is domestic shipping free?",
+          "file": "shipping.py",
+          "retrieved_files": [
+            "shipping.py",
+            "pricing.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 0.314
+        },
+        {
+          "question": "What is the international delivery estimate?",
+          "file": "shipping.py",
+          "retrieved_files": [
+            "shipping.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 0.34
+        },
+        {
+          "question": "What is the initial status of a newly created order?",
+          "file": "orders.py",
+          "retrieved_files": [
+            "orders.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 0.326
+        },
+        {
+          "question": "Can an already paid order be marked paid again?",
+          "file": "orders.py",
+          "retrieved_files": [
+            "orders.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 0.353
+        },
+        {
+          "question": "Can an order be cancelled after payment?",
+          "file": "orders.py",
+          "retrieved_files": [
+            "orders.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 0.313
+        },
+        {
+          "question": "Kubernetes replica autoscaling policy?",
+          "file": null,
+          "retrieved_files": [],
+          "rank": null,
+          "retrieval_ms": 0.306
+        },
+        {
+          "question": "Redis eviction TTL configuration?",
+          "file": null,
+          "retrieved_files": [],
+          "rank": null,
+          "retrieval_ms": 0.318
+        },
+        {
+          "question": "Stripe webhook signature secret?",
+          "file": null,
+          "retrieved_files": [],
+          "rank": null,
+          "retrieval_ms": 0.312
+        },
+        {
+          "question": "Elasticsearch cluster shards?",
+          "file": null,
+          "retrieved_files": [],
+          "rank": null,
+          "retrieval_ms": 0.424
+        }
+      ]
+    },
+    "vector": {
+      "answerable_questions": 16,
+      "out_of_scope_questions": 4,
+      "file_hit_at_1": 0.875,
+      "file_hit_at_3": 1.0,
+      "mrr_at_3": 0.9375,
+      "out_of_scope_no_result": 0,
+      "median_retrieval_ms": 23.356,
+      "cases": [
+        {
+          "question": "How are repeated additions of the same product handled?",
+          "file": "cart.py",
+          "retrieved_files": [
+            "cart.py",
+            "pricing.py",
+            "orders.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 27.889
+        },
+        {
+          "question": "What happens when a negative quantity is added?",
+          "file": "cart.py",
+          "retrieved_files": [
+            "cart.py",
+            "orders.py",
+            "pricing.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 30.643
+        },
+        {
+          "question": "Does removing an absent product fail?",
+          "file": "cart.py",
+          "retrieved_files": [
+            "orders.py",
+            "cart.py",
+            "inventory.py"
+          ],
+          "rank": 2,
+          "retrieval_ms": 30.237
+        },
+        {
+          "question": "How are total units counted rather than distinct products?",
+          "file": "cart.py",
+          "retrieved_files": [
+            "cart.py",
+            "orders.py",
+            "pricing.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 16.973
+        },
+        {
+          "question": "How do reservations affect available stock?",
+          "file": "inventory.py",
+          "retrieved_files": [
+            "inventory.py",
+            "orders.py",
+            "pricing.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 14.818
+        },
+        {
+          "question": "How are product identifiers with insufficient stock found?",
+          "file": "inventory.py",
+          "retrieved_files": [
+            "inventory.py",
+            "cart.py",
+            "orders.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 33.692
+        },
+        {
+          "question": "Can inventory reservations be partially applied when one product is out of stock?",
+          "file": "inventory.py",
+          "retrieved_files": [
+            "inventory.py",
+            "orders.py",
+            "cart.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 31.331
+        },
+        {
+          "question": "How is the price multiplied by each quantity?",
+          "file": "pricing.py",
+          "retrieved_files": [
+            "pricing.py",
+            "cart.py",
+            "shipping.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 20.203
+        },
+        {
+          "question": "How much discount does WELCOME10 give?",
+          "file": "pricing.py",
+          "retrieved_files": [
+            "pricing.py",
+            "shipping.py",
+            "orders.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 16.69
+        },
+        {
+          "question": "What happens with an unknown coupon?",
+          "file": "pricing.py",
+          "retrieved_files": [
+            "pricing.py",
+            "orders.py",
+            "cart.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 16.918
+        },
+        {
+          "question": "Is shipping discounted by the coupon?",
+          "file": "pricing.py",
+          "retrieved_files": [
+            "shipping.py",
+            "pricing.py",
+            "orders.py"
+          ],
+          "rank": 2,
+          "retrieval_ms": 17.286
+        },
+        {
+          "question": "When is domestic shipping free?",
+          "file": "shipping.py",
+          "retrieved_files": [
+            "shipping.py",
+            "orders.py",
+            "pricing.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 18.155
+        },
+        {
+          "question": "What is the international delivery estimate?",
+          "file": "shipping.py",
+          "retrieved_files": [
+            "shipping.py",
+            "pricing.py",
+            "cart.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 14.797
+        },
+        {
+          "question": "What is the initial status of a newly created order?",
+          "file": "orders.py",
+          "retrieved_files": [
+            "orders.py",
+            "cart.py",
+            "shipping.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 21.166
+        },
+        {
+          "question": "Can an already paid order be marked paid again?",
+          "file": "orders.py",
+          "retrieved_files": [
+            "orders.py",
+            "shipping.py",
+            "pricing.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 40.056
+        },
+        {
+          "question": "Can an order be cancelled after payment?",
+          "file": "orders.py",
+          "retrieved_files": [
+            "orders.py",
+            "shipping.py",
+            "inventory.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 17.227
+        },
+        {
+          "question": "Kubernetes replica autoscaling policy?",
+          "file": null,
+          "retrieved_files": [
+            "inventory.py",
+            "cart.py",
+            "pricing.py"
+          ],
+          "rank": null,
+          "retrieval_ms": 25.546
+        },
+        {
+          "question": "Redis eviction TTL configuration?",
+          "file": null,
+          "retrieved_files": [
+            "orders.py",
+            "inventory.py",
+            "cart.py"
+          ],
+          "rank": null,
+          "retrieval_ms": 36.019
+        },
+        {
+          "question": "Stripe webhook signature secret?",
+          "file": null,
+          "retrieved_files": [
+            "orders.py",
+            "inventory.py",
+            "shipping.py"
+          ],
+          "rank": null,
+          "retrieval_ms": 27.087
+        },
+        {
+          "question": "Elasticsearch cluster shards?",
+          "file": null,
+          "retrieved_files": [
+            "cart.py",
+            "inventory.py",
+            "orders.py"
+          ],
+          "rank": null,
+          "retrieval_ms": 30.717
+        }
+      ]
+    },
+    "hybrid": {
+      "answerable_questions": 16,
+      "out_of_scope_questions": 4,
+      "file_hit_at_1": 1.0,
+      "file_hit_at_3": 1.0,
+      "mrr_at_3": 1.0,
+      "out_of_scope_no_result": 0,
+      "median_retrieval_ms": 24.87,
+      "cases": [
+        {
+          "question": "How are repeated additions of the same product handled?",
+          "file": "cart.py",
+          "retrieved_files": [
+            "cart.py",
+            "pricing.py",
+            "inventory.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 33.023,
+          "answer": {
+            "text": "According to the `add_item` function in cart.py, repeated additions of the same product are handled by incrementing the existing quantity. The function uses the `get` method to retrieve the current quantity of the product, adds the new quantity, and returns the updated dictionary. [1]",
+            "status": "generated",
+            "seconds": 1.09,
+            "citation_check": {
+              "valid": true,
+              "references": [
+                1
+              ],
+              "unknown": []
+            }
+          }
+        },
+        {
+          "question": "What happens when a negative quantity is added?",
+          "file": "cart.py",
+          "retrieved_files": [
+            "cart.py",
+            "inventory.py",
+            "pricing.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 28.29,
+          "answer": {
+            "text": "According to [1], the `add_item` function raises a `ValueError` when a negative quantity is added, stating that the quantity must be a positive integer.",
+            "status": "generated",
+            "seconds": 0.63,
+            "citation_check": {
+              "valid": true,
+              "references": [
+                1
+              ],
+              "unknown": []
+            }
+          }
+        },
+        {
+          "question": "Does removing an absent product fail?",
+          "file": "cart.py",
+          "retrieved_files": [
+            "cart.py",
+            "inventory.py",
+            "pricing.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 13.082,
+          "answer": {
+            "text": "According to the excerpts, removing an absent product leaves the cart unchanged. [2]",
+            "status": "generated",
+            "seconds": 0.22,
+            "citation_check": {
+              "valid": true,
+              "references": [
+                2
+              ],
+              "unknown": []
+            }
+          }
+        },
+        {
+          "question": "How are total units counted rather than distinct products?",
+          "file": "cart.py",
+          "retrieved_files": [
+            "cart.py",
+            "orders.py",
+            "pricing.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 12.74,
+          "answer": {
+            "text": "According to the excerpt from cart.py, line 14, the `count_units` function returns the sum of all item units in the cart, rather than the number of distinct products. This is achieved by using the `sum` function on the values of the cart dictionary, which are the quantities of each item. [1]",
+            "status": "generated",
+            "seconds": 0.98,
+            "citation_check": {
+              "valid": true,
+              "references": [
+                1
+              ],
+              "unknown": []
+            }
+          }
+        },
+        {
+          "question": "How do reservations affect available stock?",
+          "file": "inventory.py",
+          "retrieved_files": [
+            "inventory.py",
+            "orders.py",
+            "pricing.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 20.345,
+          "answer": {
+            "text": "According to the `available_stock` function [1], reservations are subtracted from the available stock, but the result is never negative. This means that if the available stock is insufficient to meet the reservation, the available stock will be set to 0.",
+            "status": "generated",
+            "seconds": 0.9,
+            "citation_check": {
+              "valid": true,
+              "references": [
+                1
+              ],
+              "unknown": []
+            }
+          }
+        },
+        {
+          "question": "How are product identifiers with insufficient stock found?",
+          "file": "inventory.py",
+          "retrieved_files": [
+            "inventory.py",
+            "cart.py",
+            "pricing.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 39.837,
+          "answer": {
+            "text": "According to the code, product identifiers with insufficient stock are found by checking the cart items against the available stock using the `check_inventory` function, which returns a list of product identifiers with quantities greater than the available stock. [1]",
+            "status": "generated",
+            "seconds": 0.74,
+            "citation_check": {
+              "valid": true,
+              "references": [
+                1
+              ],
+              "unknown": []
+            }
+          }
+        },
+        {
+          "question": "Can inventory reservations be partially applied when one product is out of stock?",
+          "file": "inventory.py",
+          "retrieved_files": [
+            "inventory.py",
+            "cart.py",
+            "pricing.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 15.858,
+          "answer": {
+            "text": "According to the `reserve_inventory` function in `inventory.py`, when one product is out of stock, the entire cart is rejected and a `ValueError` is raised, indicating that the inventory reservations cannot be partially applied in this case. [1]",
+            "status": "generated",
+            "seconds": 0.64,
+            "citation_check": {
+              "valid": true,
+              "references": [
+                1
+              ],
+              "unknown": []
+            }
+          }
+        },
+        {
+          "question": "How is the price multiplied by each quantity?",
+          "file": "pricing.py",
+          "retrieved_files": [
+            "pricing.py",
+            "cart.py",
+            "inventory.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 29.54,
+          "answer": {
+            "text": "In the `subtotal_cents` function, the price is multiplied by each quantity by using the expression `prices[sku] * quantity for sku, quantity in cart.items()`. This is done by iterating over each item in the cart, where `sku` is the product identifier and `quantity` is the quantity of that product. The price of the product is retrieved from the `prices` dictionary using `prices[sku]`, and then this price is multiplied by the quantity. The results of these multiplications are summed together to produce the subtotal. [1]",
+            "status": "generated",
+            "seconds": 1.59,
+            "citation_check": {
+              "valid": true,
+              "references": [
+                1
+              ],
+              "unknown": []
+            }
+          }
+        },
+        {
+          "question": "How much discount does WELCOME10 give?",
+          "file": "pricing.py",
+          "retrieved_files": [
+            "pricing.py",
+            "shipping.py",
+            "orders.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 15.506,
+          "answer": {
+            "text": "According to the excerpt [1], the WELCOME10 coupon gives a 10% discount, which is calculated by dividing the subtotal by 10.",
+            "status": "generated",
+            "seconds": 0.58,
+            "citation_check": {
+              "valid": true,
+              "references": [
+                1
+              ],
+              "unknown": []
+            }
+          }
+        },
+        {
+          "question": "What happens with an unknown coupon?",
+          "file": "pricing.py",
+          "retrieved_files": [
+            "pricing.py",
+            "orders.py",
+            "cart.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 13.149,
+          "answer": {
+            "text": "According to the excerpts, [1], an unknown coupon in the `total_cents` function returns 0.",
+            "status": "generated",
+            "seconds": 0.52,
+            "citation_check": {
+              "valid": true,
+              "references": [
+                1
+              ],
+              "unknown": []
+            }
+          }
+        },
+        {
+          "question": "Is shipping discounted by the coupon?",
+          "file": "pricing.py",
+          "retrieved_files": [
+            "pricing.py",
+            "shipping.py",
+            "orders.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 32.868,
+          "answer": {
+            "text": "The shipping fee is not discounted by the coupon. According to the excerpt from shipping.py, the shipping fee is always 2000 cents, regardless of the coupon used. [2]",
+            "status": "generated",
+            "seconds": 0.52,
+            "citation_check": {
+              "valid": true,
+              "references": [
+                2
+              ],
+              "unknown": []
+            }
+          }
+        },
+        {
+          "question": "When is domestic shipping free?",
+          "file": "shipping.py",
+          "retrieved_files": [
+            "shipping.py",
+            "pricing.py",
+            "orders.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 12.648,
+          "answer": {
+            "text": "According to the shipping.py function [1], domestic shipping is free when the country is \"NG\" and the subtotal is 5000 cents or more.",
+            "status": "generated",
+            "seconds": 0.65,
+            "citation_check": {
+              "valid": true,
+              "references": [
+                1
+              ],
+              "unknown": []
+            }
+          }
+        },
+        {
+          "question": "What is the international delivery estimate?",
+          "file": "shipping.py",
+          "retrieved_files": [
+            "shipping.py",
+            "pricing.py",
+            "cart.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 29.121,
+          "answer": {
+            "text": "According to the provided excerpts, the international delivery estimate is 10 days. [2]",
+            "status": "generated",
+            "seconds": 0.32,
+            "citation_check": {
+              "valid": true,
+              "references": [
+                2
+              ],
+              "unknown": []
+            }
+          }
+        },
+        {
+          "question": "What is the initial status of a newly created order?",
+          "file": "orders.py",
+          "retrieved_files": [
+            "orders.py",
+            "cart.py",
+            "shipping.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 29.666,
+          "answer": {
+            "text": "According to the `create_order` function in orders.py, the initial status of a newly created order is \"pending\". [1]",
+            "status": "generated",
+            "seconds": 0.56,
+            "citation_check": {
+              "valid": true,
+              "references": [
+                1
+              ],
+              "unknown": []
+            }
+          }
+        },
+        {
+          "question": "Can an already paid order be marked paid again?",
+          "file": "orders.py",
+          "retrieved_files": [
+            "orders.py",
+            "shipping.py",
+            "pricing.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 12.682,
+          "answer": {
+            "text": "According to the `mark_paid` function in `orders.py`, [1], an already paid order cannot be marked paid again because it raises a `ValueError` with the message \"Only pending orders can be marked paid\".",
+            "status": "generated",
+            "seconds": 0.68,
+            "citation_check": {
+              "valid": true,
+              "references": [
+                1
+              ],
+              "unknown": []
+            }
+          }
+        },
+        {
+          "question": "Can an order be cancelled after payment?",
+          "file": "orders.py",
+          "retrieved_files": [
+            "orders.py",
+            "shipping.py",
+            "inventory.py"
+          ],
+          "rank": 1,
+          "retrieval_ms": 36.949,
+          "answer": {
+            "text": "According to the provided excerpts, [1], the `cancel_order` function raises a `ValueError` if the order's status is not \"pending\", indicating that only pending orders can be cancelled. There is no explicit check in the `mark_paid` function to prevent cancellation after payment, but since the order's status is changed to \"paid\" in the `mark_paid` function, it is not possible to cancel an order after it has been marked as paid.",
+            "status": "generated",
+            "seconds": 1.24,
+            "citation_check": {
+              "valid": true,
+              "references": [
+                1
+              ],
+              "unknown": []
+            }
+          }
+        },
+        {
+          "question": "Kubernetes replica autoscaling policy?",
+          "file": null,
+          "retrieved_files": [
+            "inventory.py",
+            "cart.py",
+            "pricing.py"
+          ],
+          "rank": null,
+          "retrieval_ms": 14.963,
+          "answer": {
+            "text": "The supplied excerpts do not answer that question.",
+            "status": "abstained",
+            "seconds": 0.21,
+            "citation_check": {
+              "valid": false,
+              "references": [],
+              "unknown": []
+            }
+          }
+        },
+        {
+          "question": "Redis eviction TTL configuration?",
+          "file": null,
+          "retrieved_files": [
+            "orders.py",
+            "inventory.py",
+            "cart.py"
+          ],
+          "rank": null,
+          "retrieval_ms": 45.969,
+          "answer": {
+            "text": "The supplied excerpts do not answer that question.",
+            "status": "abstained",
+            "seconds": 0.37,
+            "citation_check": {
+              "valid": false,
+              "references": [],
+              "unknown": []
+            }
+          }
+        },
+        {
+          "question": "Stripe webhook signature secret?",
+          "file": null,
+          "retrieved_files": [
+            "orders.py",
+            "inventory.py",
+            "shipping.py"
+          ],
+          "rank": null,
+          "retrieval_ms": 21.449,
+          "answer": {
+            "text": "The supplied excerpts do not answer that question.",
+            "status": "abstained",
+            "seconds": 0.18,
+            "citation_check": {
+              "valid": false,
+              "references": [],
+              "unknown": []
+            }
+          }
+        },
+        {
+          "question": "Elasticsearch cluster shards?",
+          "file": null,
+          "retrieved_files": [
+            "cart.py",
+            "inventory.py",
+            "orders.py"
+          ],
+          "rank": null,
+          "retrieval_ms": 31.907,
+          "answer": {
+            "text": "The supplied excerpts do not answer that question.",
+            "status": "abstained",
+            "seconds": 0.28,
+            "citation_check": {
+              "valid": false,
+              "references": [],
+              "unknown": []
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,100 +1,120 @@
-# GitHub Code Chat
+﻿# GitHub Code Chat
 
-A learning project for asking questions about GitHub repositories using local AI.
+An inspectable codebase assistant built by Isaiah Kolawole. Search source excerpts immediately, or use locally hosted Ollama models to generate explanations with source references.
 
-## Open the app
+## Try it locally
 
-Keep Ollama running, then from this project folder run:
+Python 3.12 is recommended. From the project folder on Windows:
 
 ```powershell
-.\.venv\Scripts\python.exe -m streamlit run app.py --server.address 127.0.0.1
+./setup.ps1
+./start.ps1
 ```
 
-Open http://localhost:8501. The app loads the saved sample index on startup. Enter a public GitHub repository URL and click **Load and index repository** to replace it. Ask a specific question, then expand **Source code used for this answer** to inspect the evidence. Clearing the conversation keeps the repository ready.
+Open http://localhost:8501. The bundled **Demo Shop** example works immediately: no GitHub token, prebuilt index, model downloads, or Ollama service is required for **Source search**.
 
-Required Ollama models:
+On other platforms, or without the Windows Python launcher:
 
-```powershell
-ollama pull llama3.2
+```bash
+python -m venv .venv
+# Activate the environment using your platform's command.
+python -m pip install -r requirements.txt
+python -m streamlit run app.py --server.address 127.0.0.1
+```
+
+![Local AI interface](docs/code-chat-demo.jpg)
+
+## Two modes
+
+**Source search** uses BM25 keyword ranking and returns inspectable excerpts. It does not generate an AI answer. Try “When is domestic shipping free?” or “How does the shop reject a cart with insufficient stock?”
+
+**Local AI** combines keyword ranking and embedding similarity, then asks a local model to explain the selected excerpts. Install Ollama separately from its official website, start it, and download the models explicitly:
+
+```bash
 ollama pull nomic-embed-text
+ollama pull llama3.2
 ```
 
-The first model writes answers; the second produces embeddings. Inference runs locally. Fetching a public repository and downloading models require internet access.
+Select **Local AI**, then **Prepare local AI**. The Windows setup script can also download the models with `./setup.ps1 -WithModels`. No cloud LLM credentials are needed. Model inference stays on the local Ollama service at `127.0.0.1:11434`.
 
-This implementation calls Ollama directly and stores the index in a JSON file so the retrieval math is visible. The reference tutorial uses LlamaIndex to coordinate these operations.
+Generated answers can be wrong even when their citations exist. The app checks for missing or out-of-range citation numbers, not factual correctness. Retrieved code remains visible if generation fails. See the [evaluation and known errors](docs/evaluation.md).
 
-## Lesson 1: ingestion
+## Explore a public repository
 
-Ingestion means bringing the repository's files into our app as text. It is the first part of retrieval-augmented generation (RAG).
+1. Enter its root URL, such as `https://github.com/octocat/Hello-World`.
+2. Choose **Load repository**. The default branch is resolved to a commit, and GitIngest reads that snapshot as text.
+3. Ask a specific question. **Open source** links reference the indexed commit and source lines.
+4. Change retrieval settings to compare keyword, vector, and hybrid ranking when embeddings are prepared.
+5. Download the conversation and its source excerpts as JSON if useful.
 
-`read_repo.py` calls GitIngest, which returns a summary, a folder tree, and file contents. The script saves these in `data/` so you can inspect exactly what the app has read. It does not execute the repository's code.
+Repository code is never executed. The app accepts public repository roots only. Git must be available on PATH; GitHub's unauthenticated API limits apply. The bundled example is available if GitHub cannot be reached.
 
-## Environment
+Each browser session keeps its active index in memory. Failed ingestion retains the previous index; clearing the chat retains the repository. A page reload may reset the session. The web app does not write user repository indexes to shared `data/` files.
 
-Python 3.12 is used with a project-specific `.venv`. Install the lesson's dependencies with:
+## Architecture
+
+```text
+Public GitHub URL → resolve commit → GitIngest → line-based chunks
+                                                   ↓
+                           BM25 keywords + local embeddings
+                                                   ↓
+                         reciprocal rank fusion + overlap reduction
+                                                   ↓
+                   bounded source context → local Llama → citation checks
+                                                   ↓
+                       explanation + excerpts + source links
+```
+
+- Overlapping 40-line chunks preserve 8 lines of boundary context.
+- Long excerpts are split into 1,600-character pieces; lockfiles are skipped.
+- Ollama is asked not to silently truncate embedding inputs.
+- At most 1,200 pieces are supported by this local prototype. Imported files over 100 KB are skipped; extracted text over 3 MB is rejected after ingestion.
+- Context is bounded by characters, not exact model tokens.
+- Saved CLI indexes include a source fingerprint, model name, schema version and snapshot metadata.
+
+This uses direct Ollama HTTP requests and visible retrieval math rather than a framework or external vector database.
+
+## Terminal workflow
+
+Offline bundled example:
 
 ```powershell
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+./.venv/Scripts/python.exe search_repo.py --sample --lexical "When is domestic shipping free?"
+./.venv/Scripts/python.exe search_repo.py --lexical "WELCOME10 coupon"
 ```
 
-To read a public repository (Git must be available on PATH):
+A real repository, with models installed:
 
 ```powershell
-.\.venv\Scripts\python.exe read_repo.py https://github.com/octocat/Hello-World
+./.venv/Scripts/python.exe read_repo.py https://github.com/octocat/Hello-World
+./.venv/Scripts/python.exe search_repo.py --build
+./.venv/Scripts/python.exe search_repo.py "What does the README say?" --answer
 ```
 
-You can also supply a local folder. The example repository is intentionally tiny so the extracted text is easy to inspect.
+`read_repo.py` also accepts a user-selected local folder. `chunk_repo.py` remains available for inspecting the line-based chunking step. The CLI stores generated data under ignored `data/`. Old indexes must be rebuilt after upgrading.
 
-## Lesson 2: chunking
-
-Run this after extracting a repository:
+## Tests and evaluation
 
 ```powershell
-.\.venv\Scripts\python.exe chunk_repo.py
+./.venv/Scripts/python.exe -m unittest discover -s tests -v
+./.venv/Scripts/python.exe evaluate.py
+./.venv/Scripts/python.exe evaluate.py --with-models --answers
 ```
 
-`chunk_repo.py` splits each extracted file into pieces of up to 40 lines, with 8 lines shared between adjacent pieces. This overlap preserves some context at the boundaries. Chunks never cross a file boundary. The output in `data/chunks.json` includes each chunk's text, filename, and line numbers.
+Tests and the keyword evaluation need no models or network. GitHub Actions runs those checks. The optional model evaluation uses the installed local models and records answers for review.
 
-For example, a 90-line file becomes chunks covering lines 1-40, 33-72, and 65-90. Later, retrieval will choose chunks relevant to a question and give their text to the language model.
+The benchmark contains **20 authored questions on five authored Python files**: 16 answerable and four outside the example's scope. Metrics measure whether the expected file is retrieved, not whether the answer is correct. [Recorded results and limitations](docs/evaluation.md) include observed model mistakes.
 
-This is a simple learning baseline. Line counts do not limit token counts, and a function may span multiple chunks. Later improvements can split code at function boundaries and enforce token limits. Filenames are recovered from GitIngest's text delimiters; a more robust loader would preserve them directly as metadata during ingestion.
+## Scope and next steps
 
-## Lesson 3: embeddings and retrieval
+This is a local engineering prototype, not a public multi-user inference service. Large repositories, malicious source content, model prompt injection, parsing unusual GitIngest digests and exact token budgets need further work before a hosted deployment. The extraction limits are checked after cloning, so they are not a complete download-resource limit.
 
-`rag.py` sends code sections to Ollama's `nomic-embed-text` model. Each section becomes a vector (a list of numbers). It stores the vectors with their text and source references in `data/index.json`.
+Next evaluation should use independently selected real repositories and held-out questions, passage-level relevance judgments, multi-file questions, and separate answer correctness scoring. Function-aware parsing and reranking are useful next experiments.
 
-When you ask a question, the same model embeds that question. **Cosine similarity** compares its vector to each stored vector. The ten most similar sections become the evidence given to Llama. A similarity score describes closeness in this search; it is not the probability that an answer is correct.
+## Attribution and rollback
 
-The model uses `search_document:` for repository text and `search_query:` for questions. Indexing skips dependency lockfiles and further divides long chunks into pieces of up to 1,600 characters. Oversized model inputs return an error rather than silently losing text. Existing indexes are rejected if their source text has changed.
+Started as a learning project inspired by [AI Engineering Hub's GitHub RAG tutorial](https://github.com/patchy631/ai-engineering-hub/tree/main/github-rag). This implementation calls Ollama directly; it does not use LlamaIndex. The bundled fictional shop corpus is authored for this project.
 
-Build or query the index from the terminal:
+References: [Ollama API](https://docs.ollama.com/api), [GitIngest](https://github.com/coderamp-labs/gitingest), and [Nomic embedding model](https://huggingface.co/nomic-ai/nomic-embed-text-v1.5).
 
-```powershell
-.\.venv\Scripts\python.exe search_repo.py --build
-.\.venv\Scripts\python.exe search_repo.py "How does URLSafeSerializer encode its payload?"
-.\.venv\Scripts\python.exe search_repo.py "How does URLSafeSerializer encode its payload?" --answer
-```
-
-## Lesson 4: retrieval-augmented generation
-
-`answer()` in `rag.py` puts the question and retrieved code into a prompt. Llama generates an explanation with numbered references. The browser shows the actual retrieved text alongside each answer so you can check it. Inspecting sources is part of using the app: a model can still misunderstand code or cite an excerpt incorrectly.
-
-The app retains a few recent turns for conversational continuity. Retrieval uses the current question, so explicit follow-up questions work better than phrases like "what about that?". The index describes the repository snapshot at ingestion time and must be rebuilt to include new commits. Its filename and line metadata come from GitIngest's digest. The current app is intended for one local user and stores one active repository index.
-
-Try these questions on the included ItsDangerous sample:
-
-- What is the purpose of URLSafeSerializer?
-- How does the serializer compress data before encoding it?
-- How does TimestampSigner check whether a signature has expired?
-
-## Pipeline
-
-Repository → GitIngest → chunks → embeddings → similarity search → selected source excerpts → Llama → answer and source references.
-
-Ollama API documentation: https://docs.ollama.com/api/embed
-
-Embedding model instructions: https://huggingface.co/nomic-ai/nomic-embed-text-v1.5
-
-Ollama runs the language model. Python coordinates ingestion, retrieval, and the interface. Model downloads are managed separately by Ollama.
-
-Reference tutorial: https://github.com/patchy631/ai-engineering-hub/tree/main/github-rag
+The version before these improvements is tagged `before-code-chat-improvements-2026-10-02` (`270319a`). Revert the improvement commit to restore it while preserving repository history.
